@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cynnp6j0xyxbt"]
+[gd_scene load_steps=4 format=3 uid="uid://cynnp6j0xyxbt"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_8q1xc"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="2_m7n4p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+bg_color = Color(0.4, 0.6, 0.8, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.3, 0.5, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -19,7 +31,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2, 0.2, 0.3, 1)
+color = Color(0.1, 0.15, 0.25, 1)
+
+[node name="Sky" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 200.0
+grow_horizontal = 2
+color = Color(0.4, 0.7, 1, 1)
+
+[node name="Ground" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.2, 0.4, 0.1, 1)
 
 [node name="GameArea" type="Control" parent="."]
 layout_mode = 1
@@ -29,28 +60,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Wall" type="Control" parent="GameArea"]
+[node name="TitleLabel" type="Label" parent="GameArea"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 50.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+text = "🏹 하늘을 뚫어라 🏹"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Wall" type="Button" parent="GameArea"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -100.0
-offset_right = 200.0
-offset_bottom = 100.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="WallRect" type="ColorRect" parent="GameArea/Wall"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.6, 0.4, 0.2, 1)
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_1")
+flat = true
 
 [node name="WallLabel" type="Label" parent="GameArea/Wall"]
 layout_mode = 1
@@ -59,10 +98,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -15.0
-offset_right = 50.0
-offset_bottom = 15.0
+offset_left = -60.0
+offset_top = -25.0
+offset_right = 60.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "종이 벽"
@@ -76,10 +115,33 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 10.0
-offset_bottom = 30.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 0
-value = 100.0
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="HitsLabel" type="Label" parent="GameArea/Wall"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 40.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "HP: 10/10"
+horizontal_alignment = 1
+
+[node name="ParticleContainer" type="Control" parent="GameArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
@@ -92,16 +154,65 @@ script = ExtResource("2_m7n4p")
 
 [node name="StatsPanel" type="Panel" parent="UI"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -200.0
-offset_right = 300.0
+offset_left = -320.0
+offset_top = -250.0
+offset_right = -20.0
 offset_bottom = -20.0
+grow_horizontal = 0
 grow_vertical = 0
 
 [node name="StatsContainer" type="VBoxContainer" parent="UI/StatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "⭐ 레벨: 1"
+
+[node name="WeaponLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "⚔️ 무기: 바늘"
+
+[node name="AttackLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "💥 공격력: 1"
+
+[node name="ExpLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "📈 경험치: 0/10"
+
+[node name="CurrencyLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "💎 마나: 0"
+
+[node name="InstructionPanel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="InstructionLabel" type="Label" parent="UI/InstructionPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,25 +223,9 @@ offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "💡 벽을 클릭해서 공격하세요!
+레벨업하면 더 강한 무기를 얻습니다"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="LevelLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
-layout_mode = 2
-text = "레벨: 1"
-
-[node name="WeaponLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
-layout_mode = 2
-text = "무기: 바늘"
-
-[node name="AttackLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
-layout_mode = 2
-text = "공격력: 1"
-
-[node name="ExpLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
-layout_mode = 2
-text = "경험치: 0/10"
-
-[node name="CurrencyLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
-layout_mode = 2
-text = "마나: 0"
-
-[connection signal="gui_input" from="GameArea/Wall" to="." method="_on_wall_input"]
+[connection signal="pressed" from="GameArea/Wall" to="." method="_on_wall_pressed"]
