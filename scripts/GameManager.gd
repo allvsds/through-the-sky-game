@@ -245,8 +245,8 @@ func create_welcome_effect():
 	particle_container.add_child(label)
 	
 	var tween = create_tween()
-	tween.tween_delay(2.0)
-	tween.parallel().tween_property(label, "modulate:a", 0.0, 1.0)
+	tween.tween_interval(2.0)
+	tween.tween_property(label, "modulate:a", 0.0, 1.0)
 	tween.tween_callback(label.queue_free)
 
 func wall_shake_effect():
