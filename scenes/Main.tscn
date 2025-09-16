@@ -1,0 +1,136 @@
+[gd_scene load_steps=3 format=3 uid="uid://cynnp6j0xyxbt"]
+
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_8q1xc"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="2_m7n4p"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8q1xc")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.3, 1)
+
+[node name="GameArea" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Wall" type="Control" parent="GameArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WallRect" type="ColorRect" parent="GameArea/Wall"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6, 0.4, 0.2, 1)
+
+[node name="WallLabel" type="Label" parent="GameArea/Wall"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "종이 벽"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HitProgress" type="ProgressBar" parent="GameArea/Wall"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_m7n4p")
+
+[node name="StatsPanel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = -20.0
+grow_vertical = 0
+
+[node name="StatsContainer" type="VBoxContainer" parent="UI/StatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "레벨: 1"
+
+[node name="WeaponLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "무기: 바늘"
+
+[node name="AttackLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "공격력: 1"
+
+[node name="ExpLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "경험치: 0/10"
+
+[node name="CurrencyLabel" type="Label" parent="UI/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "마나: 0"
+
+[connection signal="gui_input" from="GameArea/Wall" to="." method="_on_wall_input"]

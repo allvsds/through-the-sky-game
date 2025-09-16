@@ -1,0 +1,14 @@
+72322a848ab928aa5c89f0cb78209805
+::res://::1758001091
+icon.svg::CompressedTexture2D::7044658219484085502::1758001027::1758001095::1::::<><><>0<>0<>c08de9681cee9949ce41e642ec1b8b7e<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+README.md::TextFile::-1::1758001067::0::1::::<><><>0<>0<><>::
+::res://assets/::1758000966
+::res://assets/fonts/::1758000966
+::res://assets/sounds/::1758000966
+::res://assets/textures/::1758000966
+::res://data/::1758000966
+::res://scenes/::1758000984
+Main.tscn::PackedScene::6485028276610979361::1758000984::0::1::::<><><>0<>0<><>::res://scripts/GameManager.gd<>res://scripts/UI.gd
+::res://scripts/::1758001020
+GameManager.gd::GDScript::8848478047043892478::1758001015::0::1::::<>Control<><>0<>0<><>::
+UI.gd::GDScript::6501195245598201956::1758001020::0::1::::<>Control<><>0<>0<><>::
