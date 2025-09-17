@@ -1,0 +1,23 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="diamondGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#E6E6FA;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#B0E0E6;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4682B4;stop-opacity:1" />
+    </radialGradient>
+    <pattern id="diamondPattern" patternUnits="userSpaceOnUse" width="30" height="30">
+      <rect width="30" height="30" fill="url(#diamondGradient)"/>
+      <polygon points="15,5 20,15 15,25 10,15" fill="#FFF" opacity="0.7"/>
+      <polygon points="15,8 18,15 15,22 12,15" fill="#E0E0FF" opacity="0.5"/>
+    </pattern>
+  </defs>
+  <rect x="0" y="0" width="300" height="200" fill="url(#diamondPattern)" rx="10"/>
+  <rect x="5" y="5" width="290" height="190" fill="none" stroke="#4169E1" stroke-width="6" rx="8"/>
+  <text x="150" y="105" text-anchor="middle" font-family="Arial" font-size="24" fill="#191970" font-weight="bold">Diamond Wall</text>
+  <!-- Diamond sparkles -->
+  <circle cx="50" cy="40" r="2" fill="#FFF" opacity="0.8"/>
+  <circle cx="250" cy="60" r="2" fill="#FFF" opacity="0.8"/>
+  <circle cx="80" cy="150" r="2" fill="#FFF" opacity="0.8"/>
+  <circle cx="220" cy="160" r="2" fill="#FFF" opacity="0.8"/>
+</svg>

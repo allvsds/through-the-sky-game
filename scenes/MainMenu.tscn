@@ -1,0 +1,134 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxqy2y6v2kw5r"]
+
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://c2jdv5hx7wf7t" path="res://assets/textures/game_background.svg" id="2_background"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Button"]
+bg_color = Color(0.2, 0.4, 0.6, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.1, 0.2, 0.4, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ButtonPressed"]
+bg_color = Color(0.1, 0.2, 0.4, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.4, 0.6, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_background")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleContainer" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 2
+
+[node name="GameIcon" type="Label" parent="MainContainer/TitleContainer"]
+layout_mode = 2
+text = "🏹"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="MainContainer/TitleContainer"]
+layout_mode = 2
+text = "하늘을 뚫어라"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="MainContainer/TitleContainer"]
+layout_mode = 2
+text = "Through The Sky"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer1" type="Control" parent="MainContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 50)
+
+[node name="MenuContainer" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PlayButton" type="Button" parent="MainContainer/MenuContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+theme_override_styles/normal = SubResource("StyleBoxFlat_Button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ButtonPressed")
+text = "🎮 게임 시작"
+
+[node name="SettingsButton" type="Button" parent="MainContainer/MenuContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+theme_override_styles/normal = SubResource("StyleBoxFlat_Button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ButtonPressed")
+text = "⚙️ 설정"
+
+[node name="QuitButton" type="Button" parent="MainContainer/MenuContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+theme_override_styles/normal = SubResource("StyleBoxFlat_Button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ButtonPressed")
+text = "❌ 종료"
+
+[node name="Spacer2" type="Control" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CreditsLabel" type="Label" parent="MainContainer"]
+layout_mode = 2
+text = "Made with Godot Engine
+🤖 Generated with Claude Code"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MainContainer/MenuContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainContainer/MenuContainer/SettingsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainContainer/MenuContainer/QuitButton" to="." method="_on_quit_pressed"]

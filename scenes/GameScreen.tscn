@@ -1,0 +1,313 @@
+[gd_scene load_steps=12 format=3 uid="uid://bfq8x7n8xr5uj"]
+
+[ext_resource type="Script" path="res://scripts/GameScreen.gd" id="1_game"]
+[ext_resource type="Texture2D" uid="uid://c2jdv5hx7wf7t" path="res://assets/textures/game_background.svg" id="2_background"]
+[ext_resource type="Texture2D" uid="uid://db8pdtmq5fvcg" path="res://assets/textures/paper_wall.svg" id="3_paper_wall"]
+[ext_resource type="Texture2D" uid="uid://b6u2gkvhrvq0s" path="res://assets/textures/weapon_needle.svg" id="4_weapon_needle"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TopBar"]
+bg_color = Color(0.05, 0.1, 0.2, 0.9)
+border_width_bottom = 3
+border_color = Color(0.2, 0.4, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_BottomPanel"]
+bg_color = Color(0.05, 0.1, 0.2, 0.9)
+border_width_top = 3
+border_color = Color(0.2, 0.4, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Button"]
+bg_color = Color(0.2, 0.4, 0.6, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1, 0.2, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ButtonPressed"]
+bg_color = Color(0.1, 0.2, 0.4, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.4, 0.6, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ProgressBar"]
+bg_color = Color(0.3, 0.3, 0.4, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ProgressBarFill"]
+bg_color = Color(0.2, 0.8, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_HealthBar"]
+bg_color = Color(0.8, 0.2, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="GameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_game")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_background")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TopBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_TopBar")
+
+[node name="StatsContainer" type="HBoxContainer" parent="TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftStats" type="VBoxContainer" parent="TopBar/StatsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LevelContainer" type="HBoxContainer" parent="TopBar/StatsContainer/LeftStats"]
+layout_mode = 2
+
+[node name="LevelIcon" type="Label" parent="TopBar/StatsContainer/LeftStats/LevelContainer"]
+layout_mode = 2
+text = "⭐"
+
+[node name="LevelLabel" type="Label" parent="TopBar/StatsContainer/LeftStats/LevelContainer"]
+layout_mode = 2
+text = "Level: 1"
+
+[node name="ExpContainer" type="VBoxContainer" parent="TopBar/StatsContainer/LeftStats"]
+layout_mode = 2
+
+[node name="ExpLabel" type="Label" parent="TopBar/StatsContainer/LeftStats/ExpContainer"]
+layout_mode = 2
+text = "EXP: 0 / 10"
+
+[node name="ExpBar" type="ProgressBar" parent="TopBar/StatsContainer/LeftStats/ExpContainer"]
+layout_mode = 2
+max_value = 10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ProgressBar")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ProgressBarFill")
+
+[node name="RightStats" type="VBoxContainer" parent="TopBar/StatsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WeaponContainer" type="HBoxContainer" parent="TopBar/StatsContainer/RightStats"]
+layout_mode = 2
+
+[node name="WeaponIcon" type="TextureRect" parent="TopBar/StatsContainer/RightStats/WeaponContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(32, 32)
+texture = ExtResource("4_weapon_needle")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WeaponLabel" type="Label" parent="TopBar/StatsContainer/RightStats/WeaponContainer"]
+layout_mode = 2
+text = "Needle"
+vertical_alignment = 1
+
+[node name="AttackContainer" type="HBoxContainer" parent="TopBar/StatsContainer/RightStats"]
+layout_mode = 2
+
+[node name="AttackIcon" type="Label" parent="TopBar/StatsContainer/RightStats/AttackContainer"]
+layout_mode = 2
+text = "⚔️"
+
+[node name="AttackLabel" type="Label" parent="TopBar/StatsContainer/RightStats/AttackContainer"]
+layout_mode = 2
+text = "Attack: 1"
+
+[node name="GoldContainer" type="HBoxContainer" parent="TopBar/StatsContainer/RightStats"]
+layout_mode = 2
+
+[node name="GoldIcon" type="Label" parent="TopBar/StatsContainer/RightStats/GoldContainer"]
+layout_mode = 2
+text = "💰"
+
+[node name="GoldLabel" type="Label" parent="TopBar/StatsContainer/RightStats/GoldContainer"]
+layout_mode = 2
+text = "Gold: 0"
+
+[node name="GameArea" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 140.0
+offset_bottom = -220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WallContainer" type="CenterContainer" parent="GameArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WallButton" type="TextureButton" parent="GameArea/WallContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(350, 250)
+texture_normal = ExtResource("3_paper_wall")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="WallOverlay" type="Control" parent="GameArea/WallContainer/WallButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WallInfo" type="VBoxContainer" parent="GameArea/WallContainer/WallButton/WallOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WallNameLabel" type="Label" parent="GameArea/WallContainer/WallButton/WallOverlay/WallInfo"]
+layout_mode = 2
+text = "Paper Wall"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="GameArea/WallContainer/WallButton/WallOverlay/WallInfo"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HealthContainer" type="VBoxContainer" parent="GameArea/WallContainer/WallButton/WallOverlay/WallInfo"]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="GameArea/WallContainer/WallButton/WallOverlay/WallInfo/HealthContainer"]
+layout_mode = 2
+text = "HP: 10 / 10"
+horizontal_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="GameArea/WallContainer/WallButton/WallOverlay/WallInfo/HealthContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ProgressBar")
+theme_override_styles/fill = SubResource("StyleBoxFlat_HealthBar")
+
+[node name="BottomPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -220.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_BottomPanel")
+
+[node name="UpgradeContainer" type="HBoxContainer" parent="BottomPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AttackUpgrade" type="VBoxContainer" parent="BottomPanel/UpgradeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AttackUpgradeLabel" type="Label" parent="BottomPanel/UpgradeContainer/AttackUpgrade"]
+layout_mode = 2
+text = "⚔️ Attack +1"
+horizontal_alignment = 1
+
+[node name="AttackUpgradeButton" type="Button" parent="BottomPanel/UpgradeContainer/AttackUpgrade"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_Button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ButtonPressed")
+text = "Upgrade (Cost: 10)"
+
+[node name="WeaponUpgrade" type="VBoxContainer" parent="BottomPanel/UpgradeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WeaponUpgradeLabel" type="Label" parent="BottomPanel/UpgradeContainer/WeaponUpgrade"]
+layout_mode = 2
+text = "🔓 Next Weapon"
+horizontal_alignment = 1
+
+[node name="WeaponUpgradeButton" type="Button" parent="BottomPanel/UpgradeContainer/WeaponUpgrade"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_Button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ButtonPressed")
+text = "Unlock (Level 3)"
+
+[node name="MenuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_Button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ButtonPressed")
+text = "📋 Menu"
+
+[connection signal="pressed" from="GameArea/WallContainer/WallButton" to="." method="_on_wall_pressed"]
+[connection signal="pressed" from="BottomPanel/UpgradeContainer/AttackUpgrade/AttackUpgradeButton" to="." method="_on_attack_upgrade_pressed"]
+[connection signal="pressed" from="BottomPanel/UpgradeContainer/WeaponUpgrade/WeaponUpgradeButton" to="." method="_on_weapon_upgrade_pressed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_pressed"]
